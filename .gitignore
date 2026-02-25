@@ -1,0 +1,23 @@
+# Rust build
+/target
+**/target
+
+# Lock file (we will manage later if needed)
+Cargo.lock
+
+# WAL
+unicron.log
+/cybertron_wal
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode
+.idea
+
+# Rust artifacts
+*.rlib
+*.rmeta

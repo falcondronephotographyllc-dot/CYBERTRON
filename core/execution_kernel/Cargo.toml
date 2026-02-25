@@ -1,0 +1,10 @@
+[package]
+name = "execution_kernel"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+hardware_monitor = { path = "../hardware_monitor" }
+unicron_core = { path = "../governance/unicron_core" }
+titan = { path = "../titan" }

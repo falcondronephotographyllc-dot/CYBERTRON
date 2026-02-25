@@ -1,0 +1,11 @@
+[package]
+name = "unicron_node"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+unicron_core = { path = "../unicron_core" }
+unicron_wal = { path = "../unicron_wal" }
+titan = { path = "../../titan" }
+hardware_monitor = { path = "../../hardware_monitor" }
+execution_kernel = { path = "../../execution_kernel" }

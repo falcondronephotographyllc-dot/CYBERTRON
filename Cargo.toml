@@ -1,0 +1,11 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "core/governance/unicron_core",
+    "core/governance/unicron_node",
+    "core/governance/unicron_wal",
+    "core/titan",
+    "core/hardware_monitor",
+    "core/execution_kernel",
+]

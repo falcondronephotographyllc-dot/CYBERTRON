@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "unicron_core",
+    "unicron_wal",
+    "unicron_node"
+]
+
+resolver = "2"
+
