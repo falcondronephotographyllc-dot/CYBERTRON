@@ -56,7 +56,7 @@ impl ProjectInterface for TradingProject {
 
 fn main() {
 
-    let wal_path = PathBuf::from("unicron.log");
+    let wal_path = PathBuf::from("/cybertron_wal/unicron.log");
     let mut wal = Wal::new(wal_path);
     let mut state = wal.replay();
 
