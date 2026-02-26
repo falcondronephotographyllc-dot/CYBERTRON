@@ -4,6 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+axum = "0.7"
+tokio = { version = "1", features = ["full"] }
+serde_json = "1"
 unicron_core = { path = "../unicron_core" }
 unicron_wal = { path = "../unicron_wal" }
 titan = { path = "../../titan" }
