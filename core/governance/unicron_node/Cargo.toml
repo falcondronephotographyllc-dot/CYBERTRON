@@ -12,3 +12,5 @@ unicron_wal = { path = "../unicron_wal" }
 titan = { path = "../../titan" }
 hardware_monitor = { path = "../../hardware_monitor" }
 execution_kernel = { path = "../../execution_kernel" }
+
+reqwest = { version = "0.11", default-features = false, features = ["rustls-tls"] }
