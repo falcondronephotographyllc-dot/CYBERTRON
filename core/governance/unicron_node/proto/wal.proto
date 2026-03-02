@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package wal;
+
+message StreamRequest {
+  string node_id = 1;
+}
+
+message WalEvent {
+  bytes payload = 1;
+}
+
+service WalReplication {
+  rpc StreamWal (StreamRequest) returns (stream WalEvent);
+}

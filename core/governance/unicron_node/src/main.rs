@@ -6,9 +6,18 @@ use std::time::{SystemTime, UNIX_EPOCH, Duration};
 use axum::{routing::get, Router, Json, extract::Path};
 use tokio::time::sleep;
 use reqwest::Client;
+use tonic::transport::Server;
 
 use unicron_core::*;
 use unicron_wal::Wal;
+
+mod replication;
+pub mod wal {
+    tonic::include_proto!("wal");
+}
+
+use replication::ReplicationService;
+use wal::wal_replication_server::WalReplicationServer;
 
 #[derive(Clone)]
 struct AppState {
@@ -62,9 +71,9 @@ async fn main() {
         tokio::spawn(async move {
 
             let peers = [
-                "100.111.195.96",   // MEGATRON
-                "100.71.121.15",    // OPTIMUS
-                "100.110.206.128",  // STARSCREAM
+                "100.111.195.96",
+                "100.71.121.15",
+                "100.110.206.128",
             ];
 
             loop {
@@ -79,6 +88,28 @@ async fn main() {
 
                 sleep(Duration::from_secs(1)).await;
             }
+        });
+    }
+
+    // ===== START gRPC SERVER (CONTROL ONLY) =====
+    if mode == "CONTROL" {
+
+        let replication_service = ReplicationService {
+            cluster: cluster_state.clone(),
+        };
+
+        let grpc_addr = "0.0.0.0:50051".parse().unwrap();
+
+        tokio::spawn(async move {
+            println!("gRPC replication server running on 0.0.0.0:50051");
+
+            Server::builder()
+                .add_service(
+                    WalReplicationServer::new(replication_service)
+                )
+                .serve(grpc_addr)
+                .await
+                .unwrap();
         });
     }
 

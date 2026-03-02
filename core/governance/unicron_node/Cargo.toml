@@ -14,3 +14,10 @@ hardware_monitor = { path = "../../hardware_monitor" }
 execution_kernel = { path = "../../execution_kernel" }
 
 reqwest = { version = "0.11", default-features = false, features = ["rustls-tls"] }
+
+tonic = { version = "0.11", features = ["transport"] }
+prost = "0.12"
+tokio-stream = "0.1"
+
+[build-dependencies]
+tonic-build = "0.11"
